@@ -18,12 +18,7 @@ struct Menu<'a> {
 
 
 impl Menu<'_>{
-    pub fn new<'a>(items: Vec<&'a str>, config: Option<Config>) -> Menu {
-        let config = match config {
-            Some(config) => config,
-            None => Config{ selected_item_color: MenuColor::White}
-        };
-
+    pub fn new<'a>(items: Vec<&'a str>, config: Config) -> Menu {
         Menu { config, items }
     }
 
@@ -33,9 +28,9 @@ impl Menu<'_>{
         }
     }
 
-    fn select_item<'a>(&self) -> u8{
-        
-    }
+    // fn select_item<'a>(&self) -> u8{
+    //     
+    // }
 }
 
 
@@ -44,13 +39,20 @@ mod tests {
     use crate::{Menu, Config, MenuColor};
 
     #[test]
-    fn make_selection() {
-        let menu = Menu{
-            items: vec!["1","2","3"],
-            config: Config{
-                selected_item_color: MenuColor::Red
-            }
-        };
-        let selection = menu.select_item();
+    fn print_menu_items() {
+        let menu = Menu::new(vec!["first", "second", "third"], Config{selected_item_color: MenuColor::Red});
+        menu.print_items();
+
     }
+
+    // #[test]
+    // fn make_selection() {
+    //     let menu = Menu{
+    //         items: vec!["1","2","3"],
+    //         config: Config{
+    //             selected_item_color: MenuColor::Red
+    //         }
+    //     };
+    //     let selection = menu.select_item();
+    // }
 }
