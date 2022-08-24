@@ -1,25 +1,15 @@
 use std::{process::Command, io::{self, stdin}};
 
 
-struct Config {
-    selected_item_color: MenuColor
-}
-
-enum MenuColor {
-    Red,
-    Green,
-    White
-}
 
 struct Menu<'a> {
-    config: Config,
     items: Vec<&'a str>
 }
 
 
 impl Menu<'_>{
-    pub fn new<'a>(items: Vec<&'a str>, config: Config) -> Menu {
-        Menu { config, items }
+    pub fn new<'a>(items: Vec<&'a str>) -> Menu {
+        Menu {  items }
     }
 
     fn print_items(self){
@@ -36,11 +26,11 @@ impl Menu<'_>{
 
 #[cfg(test)]
 mod tests {
-    use crate::{Menu, Config, MenuColor};
+    use crate::{Menu};
 
     #[test]
     fn print_menu_items() {
-        let menu = Menu::new(vec!["first", "second", "third"], Config{selected_item_color: MenuColor::Red});
+        let menu = Menu::new(vec!["first", "second", "third"]);
         menu.print_items();
 
     }
