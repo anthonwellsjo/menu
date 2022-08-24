@@ -22,9 +22,9 @@ impl Menu<'_>{
         Menu { config, items }
     }
 
-    fn print_items(&self){
-        for item in &self.items {
-            println!("{}", item);
+    fn print_items(self){
+        for (i, el) in self.items.iter().enumerate() {
+            println!("{}. {}", i + 1, el);
         }
     }
 
